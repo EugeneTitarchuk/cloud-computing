@@ -1,0 +1,11 @@
+@WeatherApp.Api_HostAddress = http://localhost:5058
+
+GET {{WeatherApp.Api_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{WeatherApp.Api_HostAddress}}/todos/1
+Accept: application/json
+
+###
