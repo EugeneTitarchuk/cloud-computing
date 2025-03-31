@@ -10,6 +10,7 @@ builder.Services
     .SwaggerDocument()
     .AddResponseCaching();
 
+builder.Services.AddTransient<IGeoLocationService, GeoLocationService>();
 builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
 builder.Services.Configure<ApplicationOptions>(builder.Configuration);
 

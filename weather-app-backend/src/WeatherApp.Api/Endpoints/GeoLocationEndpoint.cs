@@ -23,15 +23,13 @@ namespace WeatherApp.Api.Endpoints
 
         public override async Task HandleAsync(GeoLocationRequest req, CancellationToken ct)
         {
-            var geoLocation = await _geoLocationService.(req.City)
-                
-
-            if (GeoLocation is null) {
+            var geoLocation = await _geoLocationService.FindCities(req.City);
+            if (geoLocation is null) {
                 await SendResultAsync(TypedResults.NotFound());
                 return;
             }
 
-            await SendAsync(GeoLocation);
+            await SendAsync(geoLocation);
         }
     }
 }

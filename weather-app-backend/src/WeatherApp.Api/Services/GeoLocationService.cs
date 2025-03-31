@@ -27,7 +27,12 @@ namespace WeatherApp.Api.Services
             client.BaseAddress = new Uri(options.BaseUrl);
 
             var query = $"?namePrefix={namePrefix}&minPopulation=100000&types=CITY&limit=5&offset=0";
+
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.ApiKey);
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "wft-geo-db.p.rapidapi.com");
+
             var response = await client.GetAsync(query);
+
             response.EnsureSuccessStatusCode();
 
             var responseContent = await response.Content.ReadAsStreamAsync();
