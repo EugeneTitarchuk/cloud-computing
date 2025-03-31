@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, delay, map } from 'rxjs';
-import { OPEN_WEATHER_KEY, OPEN_WEATHER_URL } from 'src/app/models/api-keys';
+import { OPEN_WEATHER_KEY, BACKEND_URL } from 'src/app/models/api-keys';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,7 @@ export class WeatherService {
    *
    */
   getWeatherForCity(city: string): Observable<any> {
-    const units = 'metric';
-    const path = `${OPEN_WEATHER_URL}?q=${city}&units=${units}&APPID=${OPEN_WEATHER_KEY}`;
+    const path = `${BACKEND_URL}/weatherforecast?city=${city}`;
 
     return this.http.get<any>(path).pipe(
       map((data) => ({
@@ -34,8 +33,7 @@ export class WeatherService {
    * longitude
    */
   getWeatherForLatLon(lat: number, lon: number): Observable<any> {
-    const units = 'metric';
-    const path = `${OPEN_WEATHER_URL}?lat=${lat}&lon=${lon}&units=${units}&appid=${OPEN_WEATHER_KEY}`;
+    const path = `${BACKEND_URL}/weatherforecast?lat=${lat}&lon=${lon}`;
 
     return this.http.get<any>(path).pipe(
       map((data) => ({

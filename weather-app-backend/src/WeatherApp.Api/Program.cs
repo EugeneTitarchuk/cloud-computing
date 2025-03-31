@@ -6,6 +6,7 @@ using WeatherApp.Api.Services;
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services
+    .AddCors()
     .AddFastEndpoints()
     .SwaggerDocument()
     .AddResponseCaching();
@@ -19,6 +20,12 @@ var app = builder.Build();
 app.UseResponseCaching()
    .UseFastEndpoints()
    .UseSwaggerGen();
+
+app.UseCors(corsPolicy => corsPolicy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
 
 app.Run();
 
